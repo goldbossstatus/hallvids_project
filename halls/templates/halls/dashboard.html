@@ -1,0 +1,34 @@
+{% extends 'halls/base.html' %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+  <div class="text-center">
+      <h2>@{{ user.username }}'s Favorite Video Collections</h2>
+      <a href="{% url 'create_fav' %}" class="btn btn-success" role="button">New Collection</a>
+
+  </div>
+  <br>
+
+    {% for hall in halls %}
+
+    <h2 class="colltitle"><a id="halltitle" style="text-decoration :none;color: rgb(255, 72, 48);" href="{% url 'detail_fav' hall.id %}">{{ hall.title }}</a></h2>
+    <a href="{% url 'add_video' hall.id %}" class="btn btn-primary"><span class="fa fa-plus"></span> Add Video</a>
+    <a href="{% url 'update_fav' hall.id %}" class="btn btn-warning"><span class="fa fa-pencil"></span> Edit Collection</a>
+
+      <div class="row">
+      {% for video in hall.video_set.all %}
+        <div class ="col-md-4 mt-3">
+          <div class="monkey">
+          <div class="card mb-4 shadow-lg">
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="card-body"><p class="card-text">{{ video.title }}</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

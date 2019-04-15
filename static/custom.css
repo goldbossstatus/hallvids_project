@@ -1,0 +1,24 @@
+body{
+  background-image: url('https://wallpaperplay.com/walls/full/5/6/1/186225.jpg');
+  background-repeat: no-repeat;
+}
+.jumbotron {
+  background-color: #EBF4FA;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 51rem;
+}
+.left-box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 325px;
+  height: 425px;
+}

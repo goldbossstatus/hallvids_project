@@ -1,0 +1,29 @@
+{% extends 'halls/base.html' %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+  <h2>Edit Collection</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    {% for field in form %}
+      <div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {% render_field field class="form-control" %}
+      </div>
+    {% endfor %}
+    <input type="submit" value="Save" class="btn btn-success">
+    <a class="btn btn-danger" href="{% url 'delete_fav' hall.id %}"><span class="fa fa-scissors"></span> Delete Thread</a>
+
+  </form>
+  <br>
+</div>
+
+
+
+
+
+
+{% endblock %}

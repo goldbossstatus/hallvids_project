@@ -1,0 +1,64 @@
+{% extends 'halls/base.html' %}
+{% block content %}
+
+<div class="banner">
+    <div class="container">
+      <center>
+        <br>
+        <h1 class="banner-">What are your Favorite <br> Video Collections?</h1>
+        <h3 class="banner-">Make your own Favorite Video Collections!</h3>
+        <h3 class="banner-">Share your Videos with the World!</h3>
+        <h3 class="banner-">View other people's Favorite Collections!</h3>
+        <a style="text-decoration :none;" href="{% url 'create_fav' %}"><h2 class="start">Start Your Video Collection!</h2></a>
+    </center>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="text-center">Popular Collections</h1>
+  {% for hall in popular_fav %}
+  <h2 class="colltitle"><a style="text-decoration : none; color: red;" href="{% url 'detail_fav' hall.id %}">{{ hall.title }}</a></h2>
+
+    <div class="row">
+    {% for video in hall.video_set.all %}
+      <div class ="col-md-4 mt-3">
+        <div class="monkey">
+        <div class="card mb-4 shadow-lg">
+          <iframe width="100%" height="250" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="card-body"><p class="card-text">{{ video.title }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% endfor %}
+
+
+
+
+  <h1 class="text-center">Recent Uploads</h1>
+  {% for hall in recent_fav %}
+  <h2><a style="text-decoration : none; color: red;" href="{% url 'detail_fav' hall.id %}">{{ hall.title }}</a></h2>
+
+    <div class="row">
+    {% for video in hall.video_set.all %}
+      <div class ="col-md-4 mt-3">
+        <div class="monkey">
+        <div class="card mb-4 shadow-lg">
+        <iframe width="100%" height="250" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="card-body"><p class="card-text">{{ video.title }}</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% endfor %}
+
+
+
+
+  </div>
+</div>
+{% endblock %}
